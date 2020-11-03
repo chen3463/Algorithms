@@ -1,5 +1,5 @@
 '''
-607. Two Sum III - Data structure design
+Two Sum III - Data structure design
 
 Design and implement a TwoSum class. It should support the following operations: add and find.
 
