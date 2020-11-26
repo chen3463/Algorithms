@@ -55,36 +55,4 @@ class Solution1:
                 nums[left], nums[right] = nums[right], nums[left]
                 left += 1
                 right -= 1 
-
-class Solution2:
-    """
-    @param nums: A list of integer which is 0, 1 or 2 
-    @return: nothing
-    """
-    def sortColors(self, nums):
-        # write your code here
-        if not nums:
-            return nums
-        
-        # print(nums)    
-        self.partition(nums, 0, len(nums) - 1, 0.5)
-        # print(nums)
-        self.partition(nums, 0, len(nums) - 1, 1.5)
-        # print(nums)
-        
-        
-    def partition(self, nums, start, end, p):
-        
-        left, right = start, end
-        
-        while left <= right:
-            while left <= right and nums[left] < p:
-                left += 1 
-            while left <= right and nums[right] > p:
-                right -= 1 
-            
-            if left <= right:
-                nums[left], nums[right] = nums[right], nums[left]
-                left += 1
-                right -= 1 
                 
