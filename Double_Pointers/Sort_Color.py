@@ -24,7 +24,7 @@ You should do it in-place (sort numbers in the original array).
 '''
 
 
-class Solution1:
+class Solution:
     """
     @param nums: A list of integer which is 0, 1 or 2 
     @return: nothing
@@ -41,9 +41,7 @@ class Solution1:
         # print(nums)
         
         
-    def partition(self, nums, start, end, p):
-        
-        left, right = start, end
+    def partition(self, nums, left, right, p):
         
         while left <= right:
             while left <= right and nums[left] < p:
