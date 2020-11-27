@@ -25,7 +25,7 @@ k <= n
 '''
 
 
-class Solution:
+class Solution1:
     """
     @param colors: A list of integer
     @param k: An integer
@@ -52,3 +52,31 @@ class Solution:
                 colors[left], colors[right] = colors[right], colors[left]
                 left += 1 
                 right -= 1 
+                
+class Solution2:
+    """
+    @param colors: A list of integer
+    @param k: An integer
+    @return: nothing
+    """
+    def sortColors2(self, colors, k):
+        self.partition_sort(colors, 1, k, 0, len(colors) - 1)
+        
+    def partition_sort(self, colors, from_color, to_color, index_from, index_to):
+        if from_color == to_color or from_color == to_color:
+            return
+        
+        left, right = index_from, index_to
+        color = (from_color + to_color) // 2 
+        while left <= right:
+            while left <= right and colors[left] <= color:
+                left += 1 
+            while left <= right and colors[right] > color:
+                right -= 1 
+                
+            if left <= right:
+                colors[left], colors[right] = colors[right], colors[left]
+                left += 1 
+                right -= 1 
+        self.partition_sort(colors, from_color, color, index_from, right)
+        self.partition_sort(colors, color + 1, to_color, left, index_to)
