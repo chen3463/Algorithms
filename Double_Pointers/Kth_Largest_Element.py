@@ -27,7 +27,7 @@ You can swap elements in the array
 '''
 
 
-class Solution:
+class Solution1:
     """
     @param n: An integer
     @param nums: An array
@@ -69,3 +69,41 @@ class Solution:
             return self.QuickSelect(nums, i, end, n - (i - start))
         
         return nums[i - 1]
+
+class Solution2:
+    """
+    @param n: An integer
+    @param nums: An array
+    @return: the Kth largest element
+    """
+    def kthLargestElement(self, k, nums):
+        # write your code here
+        if not nums:
+            return 
+        
+        return self.quick_select(k - 1, nums, 0, len(nums) - 1)
+        
+    def quick_select(self, k, nums, start, end):
+        if start == end:
+            return nums[start]
+        
+        left, right = start, end
+        p = (nums[left] + nums[right]) / 2
+        while left <= right:
+            while left <= right and nums[left] > p:
+                left += 1 
+            while left <= right and nums[right] < p:
+                right -= 1 
+            if left <= right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1 
+                right -= 1
+                
+        if right >= k and start <= right:
+            return self.quick_select(k, nums, start, right)
+            
+        elif k >= left and left <= end:
+            return self.quick_select(k, nums, left, end)
+            
+        else:
+            return nums[k]
