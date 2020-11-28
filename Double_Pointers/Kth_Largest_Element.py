@@ -1,6 +1,4 @@
 '''
-5. Kth Largest Element
-
 Find K-th largest element in an array.
 
 Example
