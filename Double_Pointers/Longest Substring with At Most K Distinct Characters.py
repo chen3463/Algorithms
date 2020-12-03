@@ -18,7 +18,7 @@ Challenge
 O(n) time
 
 '''
-class Solution:
+class Solution1:
     """
     @param s: A string
     @param k: An integer
@@ -43,3 +43,27 @@ class Solution:
             answer = max(answer, right - left + 1)
         
         return answer
+    
+class Solution2:
+    """
+    @param s: a string
+    @param k: an integer
+    @return: the number of substrings there are that contain at least k distinct characters
+    """
+    def kDistinctCharacters(self, s, k):
+        # Write your code here
+        counter = {}
+        CNT = 0
+        left = 0
+        for right in range(len(s)):
+            counter[s[right]] = counter.get(s[right], 0) + 1
+            while left <= right and len(counter) == k:
+                counter[s[left]] -= 1
+                if counter[s[left]] == 0:
+                    del counter[s[left]]
+                left += 1
+            
+            if len(counter) == k - 1 and left > 0:
+                CNT += left
+        
+        return CNT
