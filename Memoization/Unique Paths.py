@@ -1,4 +1,4 @@
-/*
+'''
 
 A robot is located at the top-left corner of a m x n grid.
 
@@ -28,7 +28,7 @@ Explanation:
 Notice
 m and n will be at most 100.
 The answer is guaranteed to be in the range of 32-bit integers
-*/
+'''
 
 class Solution:
     """
