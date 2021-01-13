@@ -42,3 +42,16 @@ class Solution:
             if nums[left] != 0:
                 nums[left] = 0 
             left += 1    
+            
+class Solution:
+    """
+    @param nums: an integer array
+    @return: nothing
+    """
+    def moveZeroes(self, nums):
+        # write your code here
+        j = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[i], nums[j] = nums[j], nums[i]
+                j += 1          
