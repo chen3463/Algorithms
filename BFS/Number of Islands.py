@@ -31,44 +31,39 @@ class Solution:
     @param grid: a boolean 2D matrix
     @return: an integer
     """
-    
     def numIslands(self, grid):
         # write your code here
-        if not grid:
+        if not grid or not grid[0]:
             return 0
-            
-        n = len(grid)
-        m = len(grid[0])
-        visited = set()
-        islands = 0
-        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-        for i in range(n):
-            for j in range(m):
-                if grid[i][j] and (i, j) not in visited:
-                    self.BFS(grid, i, j, visited)
-                    islands += 1
-                visited.add((i, j))
         
-        return islands        
-                
-    def BFS(self, grid, x, y, visited):
+        islands = 0
+        visited = set()
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] and (i, j) not in visited:
+                    self.bfs(i, j, grid, visited)
+                    islands += 1
+        return islands
+
+    def bfs(self, x, y, grid, visited):
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         queue = collections.deque([(x, y)])
-        visited.add((x, y))
         while queue:
             x, y = queue.popleft()
-            for delta_x, delta_y in self.directions:
-                x_next = x + delta_x
-                y_next = y + delta_y
-                if not self.is_valid(grid, x_next, y_next, visited):
+            for (x_delta, y_delta) in directions:
+                x_new = x + x_delta
+                y_new = y + y_delta
+                if not self.isvalid(x_new, y_new, grid, visited):
                     continue
-                queue.append((x_next, y_next))
-                visited.add((x_next, y_next))
-                
-    def is_valid(self, grid, i, j, visited):
-        if not (0 <= i < len(grid) and 0 <= j < len(grid[0])):
+                queue.append((x_new, y_new))
+                visited.add((x_new, y_new))
+
+    def isvalid(self, x, y, grid, visited):
+        m, n = len(grid), len(grid[0])
+        if not (0 <= x < m and 0 <= y < n):
             return False
-        if (i, j) in visited:
+        if (x, y) in visited:
             return False
-        return grid[i][j]
+        return grid[x][y]
             
         
