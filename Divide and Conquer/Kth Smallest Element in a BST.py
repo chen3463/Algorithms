@@ -1,6 +1,4 @@
 '''
-Kth Smallest Element in a BST
-中文English
 Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
 
 Example
